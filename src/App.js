@@ -10,6 +10,7 @@ import Article from "./Article";
 function App() {
   const [keyword, setKeyword] = useState("");
   const [articles, setArticles] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   return (
     <div className="App">
@@ -28,10 +29,10 @@ function App() {
           color="primary"
           startIcon={<SearchIcon />}
           className="searchButton"
-          style={{ height: "55px" }}
-          onClick={() => weaviateMagic(keyword, articles, setArticles)}
+          style={{ height: "55px", width: "150px" }}
+          onClick={() => weaviateMagic(keyword, setArticles, setIsSearching)}
         >
-          Search
+          {isSearching ? "Searching..." : "Search"}
         </Button>
       </form>
       <Container maxWidth="md" style={{ marginTop: "30px" }}>

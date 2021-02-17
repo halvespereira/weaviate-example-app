@@ -5,7 +5,8 @@ const client = weaviate.client({
   host: "demo.dataset.playground.semi.technology/",
 });
 
-export const weaviateMagic = (keyword, articles, setArticles) => {
+export const weaviateMagic = (keyword, setArticles, setIsSearching) => {
+  setIsSearching(true);
   client.graphql
     .get()
     .withNearText({
@@ -18,6 +19,7 @@ export const weaviateMagic = (keyword, articles, setArticles) => {
     .do()
     .then((res) => {
       setArticles(res.data.Get.Article);
+      setIsSearching(false);
     })
     .catch((err) => {
       console.log(err);
